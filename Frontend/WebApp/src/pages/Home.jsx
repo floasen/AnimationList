@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import AnimationCard from '../modules/AimationCard';
-import * as AnimationService from '../service/AnimationService';
+import AnimationCard from '../modules/AnimationCard';
+import * as AnimationService from '../services/AnimationService';
 
 export default function Home() {
     const [animations, setAnimations] = useState([]);

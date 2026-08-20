@@ -9,12 +9,11 @@ export const getAnimation = async () => {
     return data;
 }
 
-
 export const postAnimation = async (animationData) => {
     const response = await fetch(`${baseUrl}/animation` ,{
         method: 'POST',
         headers: {
-            'Content-Type': "application/json"
+             'Content-Type': "application/json"
         },
         body: JSON.stringify(animationData)
     });
@@ -36,8 +35,6 @@ export const putAnimation = async (id, animationData) => {
     }
 }
 
-
-
 export const deleteAnimation = async (id) => {
     const response = await fetch(`${baseUrl}/animation/${id}` ,{
         method: 'DELETE'
@@ -46,4 +43,3 @@ export const deleteAnimation = async (id) => {
          throw new Error('HTTP error ' + response.status);
      }
 }
-
