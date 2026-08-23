@@ -13,7 +13,7 @@ export const postAnimation = async (animationData) => {
     const response = await fetch(`${baseUrl}/animation` ,{
         method: 'POST',
         headers: {
-             'Content-Type': "application/json"
+             'Content-Type': 'application/json'
         },
         body: JSON.stringify(animationData)
     });
@@ -26,7 +26,7 @@ export const putAnimation = async (id, animationData) => {
     const response = await fetch(`${baseUrl}/animation/${id}` ,{
         method: 'PUT',
          headers: {
-           'Content-Type': "application/json"
+           'Content-Type': 'application/json'
         },
         body: JSON.stringify(animationData)
     });

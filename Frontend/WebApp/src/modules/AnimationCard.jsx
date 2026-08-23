@@ -2,8 +2,7 @@ export default function AnimationCard() {
     return (
         <div className= 'AnimationCard'>
             <p>{animationName}</p>
-            <iframe srcdoc= {animtion.code} sandbox>
-            </iframe>
+            <iframe srcdoc= {`${animtion.code}`} sandbox></iframe>
             <p>{animationDescriptrion}</p>
             <form onSubmit={handleSubmit}>
                 <input 
@@ -17,3 +16,4 @@ export default function AnimationCard() {
         </div>
     );   
 }
+
