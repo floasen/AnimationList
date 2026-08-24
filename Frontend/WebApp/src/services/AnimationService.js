@@ -1,7 +1,7 @@
-const baseUrl = 'http://localhost:5063';
+const baseUrl = 'http://localhost:5063/api';
 
 export const getAnimation = async () => {
-    const response = await fetch(`${baseUrl}/animation`);
+    const response = await fetch(`${baseUrl}/Animation`);
     if(!response.ok){
          throw new Error('HTTP error ' + response.status);
     }
@@ -10,7 +10,7 @@ export const getAnimation = async () => {
 }
 
 export const postAnimation = async (animationData) => {
-    const response = await fetch(`${baseUrl}/animation` ,{
+    const response = await fetch(`${baseUrl}/Animation` ,{
         method: 'POST',
         headers: {
              'Content-Type': 'application/json'
@@ -23,7 +23,7 @@ export const postAnimation = async (animationData) => {
 }
 
 export const putAnimation = async (id, animationData) => {
-    const response = await fetch(`${baseUrl}/animation/${id}` ,{
+    const response = await fetch(`${baseUrl}/Animation/${id}` ,{
         method: 'PUT',
          headers: {
            'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ export const putAnimation = async (id, animationData) => {
 }
 
 export const deleteAnimation = async (id) => {
-    const response = await fetch(`${baseUrl}/animation/${id}` ,{
+    const response = await fetch(`${baseUrl}/Animation/${id}` ,{
         method: 'DELETE'
     });
     if(!response.ok){

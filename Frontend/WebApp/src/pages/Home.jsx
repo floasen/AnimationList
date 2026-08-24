@@ -36,9 +36,9 @@ export default function Home() {
             {animations.length === 0 ? (
             <p>Keine Animationen verfügbar.</p>
         ) : (
-            animations.map(animations => (
-            <div key={animations.id}>
-                <AnimationCard animations={animations} />
+            animations.map(animation => (
+            <div key={animation.id}>
+                <AnimationCard animation={animation} />
             </div>
             ))
         )}
