@@ -9,6 +9,15 @@ export const getAnimation = async () => {
     return data;
 }
 
+export const getAnimationById = async (id) => {
+    const response = await fetch(`${baseUrl}/Animation/${id}`);
+    if(!response.ok){
+         throw new Error('HTTP error ' + response.status);
+    }
+    const data = await response.json();
+    return data;
+}
+
 export const postAnimation = async (animationData) => {
     const response = await fetch(`${baseUrl}/Animation` ,{
         method: 'POST',

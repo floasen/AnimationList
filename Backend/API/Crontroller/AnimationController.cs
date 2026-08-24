@@ -24,9 +24,23 @@ namespace API.Crontroller
         [HttpGet]
         public IActionResult GetAllAnimation()
         {
-            var animations = _context.Animations.ToList();
+            var animations = _context.Animations.ToList()
+            .Select(a => a.ToAnimationReadDto());
 
             return Ok(animations);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetAnimationById([FromRoute] int id)
+        {
+            var animation = _context.Animations.Find(id);
+
+            if(animation == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(animation.ToAnimationReadDto());
         }
 
         [HttpPost]

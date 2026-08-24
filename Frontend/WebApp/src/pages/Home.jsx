@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link} from 'react-router-dom';
 import AnimationCard from '../modules/AnimationCard';
 import * as AnimationService from '../services/AnimationService';
 
@@ -9,8 +10,8 @@ export default function Home() {
         AnimationService.getAnimation()
         .then(data => setAnimations(data))
         .catch((err) => {
-            console.log('Fehler beim Laden:', err);
-        }) 
+            console.error('Fehler beim Laden:', err);
+        }); 
     },[]);
 
     const handleChange = (e) => {
@@ -38,7 +39,9 @@ export default function Home() {
         ) : (
             animations.map(animation => (
             <div key={animation.id}>
+                <Link to= {`/AnimationDetails/${animation.id}`}>
                 <AnimationCard animation={animation} />
+                </Link>
             </div>
             ))
         )}
