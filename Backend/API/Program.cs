@@ -11,7 +11,7 @@ builder.Services.AddOpenApi();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-var allowOrigins = builder.Configuration.GetSection("allowedOrigins").Get<string[]>()!;
+var allowOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>()!;
 
 builder.Services.AddCors(options =>
 {

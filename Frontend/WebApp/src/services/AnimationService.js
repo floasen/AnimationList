@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:5063/api';
+const baseUrl = 'http://localhost:5000/api';
 
 export const getAnimation = async () => {
     const response = await fetch(`${baseUrl}/Animation`);

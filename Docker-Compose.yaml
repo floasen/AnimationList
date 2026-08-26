@@ -1,0 +1,38 @@
+services:
+  api: 
+    image: animationlist-api
+    pull_policy: never
+    container_name: animationlist-api
+    build: 
+      context: ./Backend
+      dockerfile: Dockerfile
+      target: final
+    ports:
+      - "5000:5000"
+
+  frontend:
+    image: animationlist-frontend
+    pull_policy: never
+    container_name: animationlist-frontend
+    build: 
+      context: ./Frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+
+  db:
+    image: mysql:latest
+    container_name: animationdb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 
+      MYSQL_DATABASE: Animations
+      MYSQL_USER: demo
+      MYSQL_PASSWORD: 
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql/data
+
+volumes:
+  mysql-data:

@@ -22,7 +22,7 @@ export default function AnimationDetails() {
 
     return(
         <div>
-            { animationEditId == animation.id ? (
+            { animationEditId === animation.id ? (
             <EditAnimation
             animation={animation}
             onCancel={() => setAnimationEditId(null)}
@@ -41,8 +41,7 @@ export default function AnimationDetails() {
                 </form>
                 <button type='button' onClick={() => setAnimationEditId(animation.id)}>Bearbeiten</button>
             </div>
-            )
-            }
+            )}
         </div>
     );
 }
