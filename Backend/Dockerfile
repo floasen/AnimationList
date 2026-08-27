@@ -28,9 +28,13 @@ WORKDIR /src
 COPY . .
 RUN dotnet tool install --global dotnet-ef
 ENV PATH="$PATH:/root/.dotnet/tools"
+RUN dotnet restore API/API.csproj
+ENV ConnectionStrings__DefaultConnection="Server=localhost;Database=dummy;User Id=dummy;Password=dummy;"
 RUN dotnet ef migrations bundle \
     --project API \
     --self-contained -r linux-x64 \
     -o /app/efbundle
 WORKDIR /app
+
+
 

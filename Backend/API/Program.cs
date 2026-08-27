@@ -9,7 +9,8 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+var serverVersion = new MySqlServerVersion(new Version(8, 4));
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(connectionString, serverVersion));
 
 var allowOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>()!;
 
