@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import * as AnimationService from '../services/AnimationService';
+import { useConfirm } from "material-ui-confirm";
 
 export default function EditAnimation({ animation, onSaved, onCancel }) {
     const [form, setForm] = useState({...animation});
+    const confirm = useConfirm();
 
     const handleChange = (e) =>{
         const name = e.target.name;
@@ -10,10 +12,18 @@ export default function EditAnimation({ animation, onSaved, onCancel }) {
         setForm(values => ({...values, [name]: value}));
     }
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        const { confirmed, reason } = await confirm();
+            if (confirmed) {
+                doChange();
+            }
+        console.log(reason);
+    };
+
+    const doChange = () =>{
         AnimationService.putAnimation(animation.id, form)
-        .then(() => onSaved())
+        .then(onSaved)
         .catch((err) => {
             console.error('Fehler beim speichern:', err);
         });

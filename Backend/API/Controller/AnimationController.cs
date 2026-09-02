@@ -8,7 +8,7 @@ using API.Mapper;
 using API.Model;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Crontroller
+namespace API.Controller
 {
 
     [Route("api/[Controller]")]

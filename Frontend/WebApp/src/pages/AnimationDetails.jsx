@@ -2,11 +2,16 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import EditAnimation from '../modules/EditAnimation'
 import * as AnimationService from '../services/AnimationService';
+import { useConfirm } from 'material-ui-confirm';
+import { useNavigate } from 'react-router-dom';
 
 export default function AnimationDetails() {
     const { animationId } = useParams();
+    const navigate = useNavigate();
+    const confirm = useConfirm();
     const [animation, setAnimation] = useState({});
     const [animationEditId, setAnimationEditId] = useState(null);
+  
 
     const loadAnimation = () => {
         AnimationService.getAnimationById(animationId)
@@ -16,9 +21,26 @@ export default function AnimationDetails() {
         }); 
     }
 
-        useEffect(() => {
-            loadAnimation();
-        },[]);
+    useEffect(() => {
+        loadAnimation();
+    },[]);
+
+    const onDelete = async (e) => {
+        e.preventDefault();
+        const { confirmed, reason } = await confirm();
+            if (confirmed) {
+                doDelete();
+            }
+        console.log(reason);
+    };
+
+    const doDelete = () =>{
+        AnimationService.deleteAnimation(animationId)
+        .then(() => navigate('/'))
+        .catch((err) =>{
+            console.console.error('Fehler beim löschen:', err);
+        });
+    }
 
     return(
         <div>
@@ -40,6 +62,7 @@ export default function AnimationDetails() {
                     <input name='description' type='text' value={animation.description} />
                 </form>
                 <button type='button' onClick={() => setAnimationEditId(animation.id)}>Bearbeiten</button>
+                <button type='button' onClick={onDelete}>Löschen</button>
             </div>
             )}
         </div>

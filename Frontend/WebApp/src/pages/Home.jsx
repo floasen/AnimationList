@@ -14,6 +14,7 @@ export default function Home() {
         }); 
     },[]);
 
+    /*
     const handleChange = (e) => {
         const value = e.target.checked;
         setAnimations(values => ({...values, [name]: value}));
@@ -30,21 +31,25 @@ export default function Home() {
             alert('Fehler beim setzen');
         }
     }
+*/
 
     return (
         <div>
             <h1>Animationen</h1>
-            {animations.length === 0 ? (
-            <p>Keine Animationen verfügbar.</p>
-        ) : (
-            animations.map(animation => (
-            <div key={animation.id}>
-                <Link to= {`/AnimationDetails/${animation.id}`}>
-                <AnimationCard animation={animation} />
-                </Link>
+            <div className='grid-container'>
+                
+                {animations.length === 0 ? (
+                <p>Keine Animationen verfügbar.</p>
+            ) : (
+                animations.map(animation => (
+                <div key={animation.id} className= 'item'>
+                    <Link to= {`/AnimationDetails/${animation.id}`}>
+                    <AnimationCard animation={animation} />
+                    </Link>
+                </div>
+                ))
+            )}
             </div>
-            ))
-        )}
-        </div>
+        </div> 
     );
 }
